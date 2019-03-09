@@ -1,0 +1,24 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: A starter AWS Lambda function.
+Parameters: 
+    IdentityNameParameter: 
+      Type: String
+Resources:
+  s3Trigger:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs8.10
+      CodeUri: .
+      Description: A starter AWS Lambda function.
+      MemorySize: 128
+      Timeout: 15
+      Policies:
+        - SESSendBouncePolicy:
+            IdentityName: !Ref IdentityNameParameter
+
+      Environment:
+        Variables:
+          api_key:
+          FIREBASE_PRIVATE_KEY:

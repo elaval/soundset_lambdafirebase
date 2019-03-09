@@ -1,0 +1,2 @@
+SINCE Some dependencies must be for linux, dev test on mac does not work.  This will fix it
+npm rebuild --target=8.1.0 --target_platform=linux --target_arch=x64 --target_libc=glibc --update-binary

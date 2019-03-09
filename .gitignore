@@ -2,3 +2,5 @@
 .credentials
 node_modules
 sam-app
+crendtials/*
+credentials/*
