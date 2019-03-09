@@ -16,7 +16,9 @@ const db = admin.firestore();
 
 exports.handler =  (event, context, callback) => {
   const data = {
-    lastEvent: new Date()
+    lastEvent: new Date(),
+    event: event,
+    KEY: FIREBASE_PRIVATE_KEY
   };
   
   // Add a new document in collection "cities" with ID 'LA'
