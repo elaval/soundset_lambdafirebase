@@ -1,6 +1,8 @@
 const admin = require('firebase-admin');
 
-const FIREBASE_PRIVATE_KEY = process.env.FIREBASE_PRIVATE_KEY
+//const FIREBASE_PRIVATE_KEY = JSON.parse(process.env.FIREBASE_PRIVATE_KEY)
+const FIREBASE_PRIVATE_KEY = process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n')
+
 admin.initializeApp({
   credential: admin.credential.cert({
     projectId: 'soundset-abffd',
