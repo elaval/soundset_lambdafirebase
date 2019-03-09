@@ -21,8 +21,9 @@ exports.handler =  (event, context, callback) => {
   
   // Add a new document in collection "cities" with ID 'LA'
   const setDoc = db.collection('test').doc('LA').set(data);
-  console.log("DONE")
-  console.log(event)
+  console.log("DONE");
+  console.log(event);
+  console.log(FIREBASE_PRIVATE_KEY);
   callback(null, "DONE");
 };
 
