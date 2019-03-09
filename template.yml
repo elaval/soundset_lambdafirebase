@@ -13,7 +13,7 @@ Resources:
       CodeUri: .
       Description: A starter AWS Lambda function.
       MemorySize: 128
-      Timeout: 15
+      Timeout: 120
       Policies:
         - SESSendBouncePolicy:
             IdentityName: !Ref IdentityNameParameter
