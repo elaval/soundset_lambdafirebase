@@ -16,58 +16,26 @@ admin.initializeApp({
 // As an admin, the app has access to read and write all data, regardless of Security Rules
 var db = admin.database();
 var ref = db.ref("test");
-/*
-ref.once("dummy", function(snapshot) {
-  console.log(snapshot.val());
-});
-*/
+const dbStore = admin.firestore();
 
 
-/*
-admin.initializeApp({
-  credential: admin.credential.cert({
-    projectId: 'soundset-abffd',
-    clientEmail: 'firebase-adminsdk-zrq83@soundset-abffd.iam.gserviceaccount.com',
-    privateKey: FIREBASE_PRIVATE_KEY
-  }),
-
-});
 
 
-const db = admin.firestore();
-*/
+
 
 exports.handler =  (event, context, callback) => {
   const data = {
     lastEvent: new Date(),
-    event: event,
-    KEY: FIREBASE_PRIVATE_KEY
+    event: event
   };
-  
-  // Add a new document in collection "cities" with ID 'LA'
-  
-  ref.once("value", function(snapshot) {
-    console.log(snapshot.val());
-  });
-  
 
-  //const setDoc = db.collection('test').doc('LA').set(data);
-  /*
-  var cityRef = db.collection('cities').doc('BJ');
+  const setDoc = dbStore.collection('test').doc('LA').set(data);
 
-  var setWithOptions = cityRef.set({
-    capital: true
-  }, { merge: true });
-  */
 
-  console.log("DONE");
   console.log(event);
-  console.log(FIREBASE_PRIVATE_KEY);
 
-  ref.once("value", function(snapshot) {
-    console.log(snapshot.val());
-    callback(null, snapshot.val());
-  });
+  ref.child("dummy").update({date: (new Date()).toISOString()});
+  callback(null, JSON.stringify(event));
   
 };
 
