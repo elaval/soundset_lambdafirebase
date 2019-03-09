@@ -10,12 +10,17 @@ admin.initializeApp({
 
 });
 
-var db = admin.firestore();
+const db = admin.firestore();
 
-var data = {
-  lastEvent: new Date()
+exports.handler =  (event, context, callback) => {
+  const data = {
+    lastEvent: new Date()
+  };
+  
+  // Add a new document in collection "cities" with ID 'LA'
+  const setDoc = db.collection('test').doc('LA').set(data);
+  console.log("DONE")
 };
 
-// Add a new document in collection "cities" with ID 'LA'
-var setDoc = db.collection('test').doc('LA').set(data);
-console.log("DONE")
+
+
