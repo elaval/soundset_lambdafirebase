@@ -12,7 +12,7 @@ deploy:
   function_name: s3-trigger
   region: us-east-1
   handler_name: handler
-  runtime: nodejs6.10
+  runtime: nodejs8.10
   publish: true 
   #zip: index.js
   zip: deploy.zip
