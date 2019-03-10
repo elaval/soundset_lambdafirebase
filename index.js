@@ -8,7 +8,7 @@ const FIREBASE_PRIVATE_KEY = process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\
 admin.initializeApp({
   credential: admin.credential.cert({
     projectId: 'soundset-abffd',
-    clientEmail: 'firebase-adminsdk-zrq83@soundset-abffd.iam.gserviceaccount.com',
+    clientEmail: 'firebase-adminsdk-sz6e6@soundset-abffd.iam.gserviceaccount.com',
     privateKey: FIREBASE_PRIVATE_KEY
   }),
   databaseURL: "https://soundset-abffd.firebaseio.com"
