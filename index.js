@@ -40,7 +40,8 @@ exports.handler =  (event, context, callback) => {
       key: key
     };
 
-    const setDoc = dbStore.collection('newFiles').doc(key).set(data);
+    //const setDoc = dbStore.collection('newFiles').doc(key).set(data);
+    const setDoc = dbStore.collection('newFiles').add(data);
   }
   callback(null, JSON.stringify(event));
 };
