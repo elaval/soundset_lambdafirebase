@@ -26,19 +26,23 @@ const dbStore = admin.firestore();
 
 
 exports.handler =  (event, context, callback) => {
-  const data = {
-    lastEvent: new Date(),
-    event: event
-  };
-
-  const setDoc = dbStore.collection('test').doc('LA').set(data);
 
 
-  console.log(event);
+  for (record of event.Records || []) {
+    const bucket = record.s3 && record.s3.bucket && record.s3.bucket.name || "nn";
+    const key = record.s3 && record.s3.object && record.s3.object.key || "nn";
+    const data = {
+      notifiedTime: new Date(),
+      eventTime: record.eventTime,
+      eventName: record.eventName,
+      fullRecord: record,
+      bucket: bucket,
+      key: key
+    };
 
-  //ref.child("dummy").update({date: (new Date()).toISOString()});
+    const setDoc = dbStore.collection('newFiles').doc(key).set(data);
+  }
   callback(null, JSON.stringify(event));
-  
 };
 
 
