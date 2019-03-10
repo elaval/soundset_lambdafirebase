@@ -17,6 +17,7 @@ deploy:
   handler_name: handler
   runtime: nodejs8.10
   publish: true 
+  timeout: 20
   #zip: index.js
   zip: deploy.zip
   role: arn:aws:iam::287173911746:role/lambda_basic_execution
