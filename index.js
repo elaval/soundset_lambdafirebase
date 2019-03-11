@@ -37,11 +37,10 @@ exports.handler =  (event, context, callback) => {
       eventName: record.eventName,
       bucket: bucket,
       key: key,
-      unlocked: True
+      unlocked: true
     };
 
-    //const setDoc = dbStore.collection('newFiles').doc(key).set(data);
-    const setDoc = dbStore.collection('newFiles').add(data);
+    const setDoc = dbStore.collection('jobsPending').add(data);
   }
   callback(null, JSON.stringify(event));
 };
