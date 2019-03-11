@@ -35,9 +35,9 @@ exports.handler =  (event, context, callback) => {
       notifiedTime: new Date(),
       eventTime: record.eventTime,
       eventName: record.eventName,
-      fullRecord: record,
       bucket: bucket,
-      key: key
+      key: key,
+      unlocked: True
     };
 
     //const setDoc = dbStore.collection('newFiles').doc(key).set(data);
