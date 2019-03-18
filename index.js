@@ -1,8 +1,10 @@
 const admin = require('firebase-admin');
+const http = require('http');
 
 //const FIREBASE_PRIVATE_KEY = JSON.parse(process.env.FIREBASE_PRIVATE_KEY)
 const FIREBASE_PRIVATE_KEY = process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n')
-
+const TRIGGER_URL = process.env.TRIGGER_URL || "http://157.230.221.169:5000/trigger";
+console.log(`Trigger url: ${TRIGGER_URL}`);
 
 // Initialize the app with a service account, granting admin privileges
 admin.initializeApp({
@@ -21,10 +23,6 @@ var ref = db.ref("test");
 */
 const dbStore = admin.firestore();
 
-
-
-
-
 exports.handler =  (event, context, callback) => {
 
 
@@ -42,8 +40,21 @@ exports.handler =  (event, context, callback) => {
 
     const setDoc = dbStore.collection('jobsPending').add(data);
   }
+  triggerAnalysisProcess();
   callback(null, JSON.stringify(event));
 };
 
-
-
+function triggerAnalysisProcess() {
+  http.get(TRIGGER_URL, (response) => {
+    response.on('data', (data) => {
+      const parsedData = JSON.parse(data);
+      console.log(parsedData);
+    })    
+    response.on('end', () => {
+      console.log("END TRIGGER")
+    })
+  })
+  .on('error', (e) => {
+    console.error(`Got error: ${e.message}`);
+  });
+}
