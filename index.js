@@ -40,7 +40,7 @@ exports.handler =  (event, context, callback) => {
 
     const setDoc = dbStore.collection('jobsPending').add(data);
   }
-  triggerAnalysisProcess();
+  //triggerAnalysisProcess();
   callback(null, JSON.stringify(event));
 };
 
